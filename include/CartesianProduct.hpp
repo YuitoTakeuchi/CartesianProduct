@@ -13,13 +13,10 @@ class CartesianProductIndex {
     static constexpr int dimension = sizeof...(N);
     static constexpr int sizes[dimension] = {N...};
     static constexpr long prod = std::accumulate(std::begin(sizes), std::end(sizes), 1UL, std::multiplies<long>{});
-    std::array<int, dimension> product_set{};
+    std::vector<int> product_set{-1};
 
 public:
-    CartesianProductIndex() {
-        product_set[0] = -1;
-    }
-    const std::array<int, dimension>& next() {
+    const std::vector<int>& next() {
         for(int idx = 0; idx < dimension; ++idx) {
             if(++product_set[idx] < sizes[idx]) break;
             product_set[idx] = 0;
@@ -29,34 +26,6 @@ public:
 
     long size() {return prod;}
 };
-
-// Dynamic
-// template<>
-// class CartesianProductIndex<> {
-//     const int dimension;
-//     const long prod;
-//     const std::vector<int> sizes;
-//     std::array<int, 256> product_set{-1};
-
-// public:
-//     CartesianProductIndex(int size, int dimension)
-//     : sizes(std::vector<int>(dimension, size)), dimension(dimension), 
-//     prod(pow(size, dimension)) {}
-
-//     CartesianProductIndex(std::vector<int> sizes)
-//     : sizes(sizes), dimension(sizes.size()),
-//     prod(std::accumulate(std::begin(sizes), std::end(sizes), 1UL, std::multiplies<long>{})) {}
-
-//     const std::array<int, 256>& next() {
-//         for(int idx = 0; idx < dimension; ++idx) {
-//             if(++product_set[idx] < sizes[idx]) break;
-//             product_set[idx] = 0;
-//         }
-//         return product_set;
-//     }
-
-//     long size() {return prod;}
-// };
 
 // Dynamic
 template<>
