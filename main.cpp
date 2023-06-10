@@ -26,7 +26,7 @@ int main() {
 
     int64_t sum2 = 0;
     // std::vector<int> sizes(4, 200);
-    CartesianProductIndex<> gen2(200, 4);
+    CartesianProductIndex<> gen2(4, 200);
     for(int i = 0; i < gen2.size(); ++i) {
         const auto& set = gen2.next();
         // for(auto& e: set) sum2 += e;
