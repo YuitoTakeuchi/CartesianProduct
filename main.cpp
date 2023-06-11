@@ -12,7 +12,7 @@ int main() {
     CartesianProductIndex<200, 200, 200, 200> gen;
     for(int i = 0; i < gen.size(); ++i) {
         const auto& set = gen.next();
-        for(int i = 0; i < 4; ++i) sum += set[i];
+        for(int i = 0; i < gen.get_dimension(); ++i) sum += set[i];
     }
 
     end = std::chrono::system_clock::now();
@@ -30,7 +30,7 @@ int main() {
     for(int i = 0; i < gen2.size(); ++i) {
         const auto& set = gen2.next();
         // for(auto& e: set) sum2 += e;
-        for(int i = 0; i < 4; ++i) sum2 += set[i];
+        for(int i = 0; i < gen.get_dimension(); ++i) sum2 += set[i];
     }
 
     end = std::chrono::system_clock::now();

@@ -28,6 +28,7 @@ public:
     }
 
     long size() {return prod;}
+    int get_dimension() {return dimension;}
 };
 
 // Dynamic
@@ -61,4 +62,5 @@ public:
         return product_set;
     }
     long size() {return prod;}
+    int get_dimension() {return dimension;}
 };
